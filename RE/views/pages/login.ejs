@@ -40,7 +40,7 @@
         </nav>
               
 <div class="login-form">
-    <form action="https://empbackend.azurewebsites.net/employer/login" method="post" id="login">
+    <form action="" method="post" id="login">
         <h4 class="text-center"> Login</h4>       
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Username" required="required" name="uname">
@@ -85,7 +85,7 @@
             sessionStorage.setItem('Emp_ID', user_name); 
             
             // CHANGE ""
-            location.href = "/adddetails";
+            location.href = "/appform";
         }
         else{
             alert("Login failed, please try again");
