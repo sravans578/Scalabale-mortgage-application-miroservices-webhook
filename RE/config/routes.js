@@ -23,6 +23,8 @@ module.exports.routes = {
   '/login': { view: 'pages/login' },
   '/app': { view: 'pages/login-appraiser' },
   '/details': { view: 'pages/appform' },
+  'post /loginb' :'REControllerController.login',
+  'post /adddetail' :'REControllerController.adddetails',
 
 
   /***************************************************************************
