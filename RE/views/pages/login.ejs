@@ -40,7 +40,7 @@
         </nav>
               
 <div class="login-form">
-    <form action="" method="post" id="login">
+    <form action="/loginb" method="post" id="login">
         <h4 class="text-center"> Login</h4>       
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Username" required="required" name="uname">
@@ -76,19 +76,20 @@
      
       // Response
       posting.done(function(data) {
-        console.log(data.status);
+        console.log(data);
         // console.log("reached here");
         // location.href = "/adddetails";
-        if(data.login == "success"){
+        if(data.success == "Login Successful"){
+            
             // Store employee 
             //cpnsole
             sessionStorage.setItem('Emp_ID', user_name); 
             
             // CHANGE ""
-            location.href = "/appform";
+            location.href = "/details";
         }
         else{
-            alert("Login failed, please try again");
+            alert(data.error);
         }
       });
     });

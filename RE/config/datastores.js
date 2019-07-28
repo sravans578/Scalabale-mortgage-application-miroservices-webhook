@@ -51,6 +51,14 @@ module.exports.datastores = {
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
 
+    adapter: require('sails-mysql'),
+    host: 'clusterproject.mysql.database.azure.com',
+    port: 3306,
+    user: 'anurag@clusterproject',
+    password: 'cluster@2019',
+    database: 'portals'
+
+
   },
 
 
