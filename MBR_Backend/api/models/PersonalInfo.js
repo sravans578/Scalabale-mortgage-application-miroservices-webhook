@@ -39,6 +39,10 @@ module.exports = {
     insurance_value:{
         type:'string',
         defaultsTo: "Pending"
+    },
+    deduct_value:{
+        type:'string',
+        defaultsTo: "Pending"
     }
 }
 };

@@ -7,38 +7,6 @@
 
 module.exports = {
 
-
-    // loginmbr019: function(req,res){
-    //     var uname = req.query.username;
-    //     var pwd = req.query.password;
-    //     if(uname == ""){
-    //         res.send("No username");
-    //     }
-	// 	if(uname == "" && pwd == "") {
-	// 		res.send("No username or password specified!");
-    //     }
-    //     else{
-    //         MBR.find( { "employeeID": uname , "password": pwd}).exec(function(err,result){
-    //             console.log("result",result);
-    //         if (err) {
-    //             sails.log.debug('Some error occurred ' + err);
-    //             return res.json(300, { error: 'Some error occurred' });
-    //         }
-    //         else
-    //         {
-    //             if(result != ""){
-    //             sails.log.debug('Success', JSON.stringify(result));
-    //             return res.json({ success: 'Login Successful' });
-    //             }
-    //             else
-    //             {
-    //             return res.json({ error: 'Some error occurred' });
-    //             }
-    //         } 
-    //   });
-
-    // }
-    // },
     loginmbr019: function(req,res){
         var mort_id = req.query.id;
         var pwd = req.query.password;
@@ -63,13 +31,6 @@ module.exports = {
                 else
                 {
                     if(result != ""){
-                        fetched_user = result;
-                        var olddate = new Date();
-                        var newDateObj = new Date(olddate.getTime() +60000);
-                        req.session.cookie.expires = newDateObj;
-                        req.session.authenticated = true;
-                        console.log(req.session);
-                    // sails.log.debug('Success', JSON.stringify(result));
                         return res.json({ success: 'Login Successful',
                                         id: result[0].id });
                     }
@@ -167,9 +128,11 @@ module.exports = {
             //     res.json({ mortgageStatus: "Password Doesnt Match"});
             // }
             else{            
-                res.json({ RE_status: result[0].RE_status,
-                            employeer_status: result[0].employeer_status,
-                            insurance_value:result[0].insurance_value});
+                res.json({  employeer_status: result[0].employeer_status,
+                            insurance_value:result[0].insurance_value,
+                            deduct_value : result[0].deduct_value,
+                            mlsid: result[0].MISID,
+                            name: result[0].name });
         }
         });
     },
@@ -200,8 +163,12 @@ module.exports = {
         });
     },
     updateEmployeerstatus: function(req,res){
-        var appno =req.body.appno;
-        var emp_status =req.body.status;
+        var mort_id =req.body.mort_id;
+        var salary =req.body.salary;
+        var name =req.body.name;
+        var employment_len =req.body.employment_len;
+        if(salary > 25000){
+
         PersonalInfo.find({"id":appno}).exec(function(err,result){
                 if(err){
                     console.log("error",err);
@@ -210,7 +177,7 @@ module.exports = {
                     res.json({ applicationid: "ID not found"});
                 }
                 else{            
-                    PersonalInfo.updateOne({"id" : appno}).set({employeer_status : emp_status}).exec(function(err,result){
+                    PersonalInfo.updateOne({"id" : appno}).set({employeer_status : 'Approved'}).exec(function(err,result){
                         console.log(result);
                         if(err){
                             console.log("error",err);
@@ -224,10 +191,15 @@ module.exports = {
                     });
             }
         });
+        }
+        else{
+            res.send("Sorry Not eligible");
+        }
     },
     updateinsurancestatus:function(req,res){
         var appno =req.body.appno;
         var ins_valu =req.body.value;
+        var ded_value = req.body.ded_value;
         PersonalInfo.find({"id":appno}).exec(function(err,result){
                 if(err){
                     console.log("error",err);
@@ -236,7 +208,7 @@ module.exports = {
                     res.json({ applicationid: "ID not found"});
                 }
                 else{            
-                    PersonalInfo.updateOne({"id" : appno}).set({insurance_value : ins_valu}).exec(function(err,result){
+                    PersonalInfo.updateOne({"id" : appno}).set({insurance_value : ins_valu, deduct_value:ded_value}).exec(function(err,result){
                         console.log(result);
                         if(err){
                             console.log("error",err);
