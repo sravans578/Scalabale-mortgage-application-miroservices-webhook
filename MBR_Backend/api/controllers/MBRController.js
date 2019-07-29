@@ -169,7 +169,7 @@ module.exports = {
         var employment_len =req.body.employment_len;
         if(salary > 25000){
 
-        PersonalInfo.find({"id":appno}).exec(function(err,result){
+        PersonalInfo.find({"id":mort_id}).exec(function(err,result){
                 if(err){
                     console.log("error",err);
                 }
@@ -177,7 +177,7 @@ module.exports = {
                     res.json({ applicationid: "ID not found"});
                 }
                 else{            
-                    PersonalInfo.updateOne({"id" : appno}).set({employeer_status : 'Approved'}).exec(function(err,result){
+                    PersonalInfo.updateOne({"id" : mort_id}).set({employeer_status : 'Approved'}).exec(function(err,result){
                         console.log(result);
                         if(err){
                             console.log("error",err);
@@ -197,9 +197,9 @@ module.exports = {
         }
     },
     updateinsurancestatus:function(req,res){
-        var appno =req.body.appno;
-        var ins_valu =req.body.value;
-        var ded_value = req.body.ded_value;
+        var appno =req.body.mort_id;
+        var ins_valu =req.body.insured_value;
+        var ded_value = req.body.deductible_value;
         PersonalInfo.find({"id":appno}).exec(function(err,result){
                 if(err){
                     console.log("error",err);
@@ -208,7 +208,7 @@ module.exports = {
                     res.json({ applicationid: "ID not found"});
                 }
                 else{            
-                    PersonalInfo.updateOne({"id" : appno}).set({insurance_value : ins_valu, deduct_value:ded_value}).exec(function(err,result){
+                    PersonalInfo.update({"id" : appno}).set({insurance_value : ins_valu, deduct_value:ded_value}).exec(function(err,result){
                         console.log(result);
                         if(err){
                             console.log("error",err);

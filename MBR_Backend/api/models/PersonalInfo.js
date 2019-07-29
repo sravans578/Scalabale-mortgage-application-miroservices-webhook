@@ -28,10 +28,10 @@ module.exports = {
         type:'string',
         required: true
     },
-    RE_status:{
-        type:'string',
-        defaultsTo: "Pending"
-    },
+    // RE_status:{
+    //     type:'string',
+    //     defaultsTo: "Pending"
+    // },
     employeer_status:{
         type:'string',
         defaultsTo: "Pending"

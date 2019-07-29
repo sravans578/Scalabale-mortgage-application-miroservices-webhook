@@ -39,4 +39,6 @@ module.exports.routes = {
 'post /updateREstatus' :'MBRController.updateREstatus',
 'post /updateEmployeerstatus' :'MBRController.updateEmployeerstatus',
 'post /onloadpersonalInfo' :'MBRController.onloadpersonalInfo',
+'post /updateinsurancestatus' :'MBRController.updateinsurancestatus',
+
 };
