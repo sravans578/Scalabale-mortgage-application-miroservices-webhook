@@ -43,7 +43,7 @@ window.onload=  function() {
     console.log(uname);
     // let pwd = document.getElementById("password").value;
             
-            let url = "http://localhost:4000/getstatus?id=" + uname;
+            let url = "https://projectclustermbrback.azurewebsites.net/getstatus?id=" + uname;
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {

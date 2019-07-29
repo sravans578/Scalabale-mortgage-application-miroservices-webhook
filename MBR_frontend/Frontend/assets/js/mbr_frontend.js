@@ -12,7 +12,7 @@ function login(){
         // pwd.focus();
         return false;
     }
-    let url = "http://localhost:4000/loginmbr019?id=" + uname +"&password=" + pwd;
+    let url = "https://projectclustermbrback.azurewebsites.net/loginmbr019?id=" + uname +"&password=" + pwd;
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -88,13 +88,13 @@ function mbrform() {
             return false;
     }
    
-            let url = "http://localhost:4000/personalinfo019?name=" + name + "&mortgage_value=" + mvalue + "&MISID=" + mlsid + "&Employer_name=" +empName +"&Password=" +pwd;
+            let url = "https://projectclustermbrback.azurewebsites.net/personalinfo019?name=" + name + "&mortgage_value=" + mvalue + "&MISID=" + mlsid + "&Employer_name=" +empName +"&Password=" +pwd;
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     console.log("got response");
                     let result = JSON.parse(this.response);
-                    document.getElementById("applicationNum").innerHTML = "Your Application id is: " + result.appid;
+                    document.getElementById("applicationNum").innerHTML = "Your Mortgage id is: " + result.appid;
                     document.getElementById("brokerAddress").innerHTML = "Broker's webservice is: " + result.webservice;
                     console.log(result);
                 }
