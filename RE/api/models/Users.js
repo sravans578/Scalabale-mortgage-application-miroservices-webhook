@@ -33,6 +33,12 @@ module.exports = {
       required: true
     },
 
+    type:
+    {
+      type: 'string',
+      required: false
+    },
+
   },
 
 };
