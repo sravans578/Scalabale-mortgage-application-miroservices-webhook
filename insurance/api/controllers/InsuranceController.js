@@ -14,7 +14,7 @@ module.exports = {
         var name = req.body.name;
 
         var insured_value = appraisal_value * 0.70;
-        var deductible_value = appraisal_value * 0.5;
+        var deductible_value = appraisal_value * 0.05;
 
         await Insurance.createEach([{mort_id:mort_id, appraisal_value: appraisal_value, insured_value:insured_value, deductible_value:deductible_value, mlsid: mlsid, name: name}]);
 
