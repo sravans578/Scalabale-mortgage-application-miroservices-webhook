@@ -28,6 +28,7 @@
              
                 <button type="submit" class=" btn btn-success btn-block">Submit Request</button>
               </form>
+              <button type="submit" id="logout" class=" btn btn-success btn-block">Logout</button>
 </div>
 
 <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -50,6 +51,7 @@
   </div>
 
 <script>
+
   $( "#submit_details" ).submit(function( event ) {
       event.preventDefault();
       var $form = $(this),
@@ -57,25 +59,68 @@
         url_logic= $form.find( "input[name='URL']" ).val(),
         url1 = $form.attr( "action" );
         let emp_id = sessionStorage.getItem('Emp_ID');
+
+  $.ajax({
+    type: 'POST',
+    url: "http://localhost:1337/getEmployerDetails",
+    dataType: "json",
+    xhrFields: {
+       withCredentials: true
+    },
+
+    success: function (data) {
+    console.log(data)
+  
+    },
+
+    error: function (req, status, error) {
+   console.log("error",error);
+    }
+  });
+  });
      
       // POST request
-      var posting = $.post( url1, { mortId: mortid, employeeID : emp_id, url: url_logic } );
+//       var posting = $.post( url1, { mortId: mortid, employeeID : emp_id, url: url_logic } );
      
-      // Response
-      posting.done(function(data) {
-        console.log(data);
-        if(data == "ok"){
+//       // Response
+//       posting.done(function(data) {
+//         console.log(data);
+//         if(data == "ok"){
 
-          $("#content").html("Application Submitted Succesfully!!");
-          jQuery("#popup").modal('show');
+//           $("#content").html("Application Submitted Succesfully!!");
+//           jQuery("#popup").modal('show');
             
-        }
+//         }
 
-        else{
-          alert(res.error)
-        }
+//         else{
+//           alert(res.error)
+//         }
 
       
-      });
-    });
+//       });
+//     });
+
+// $( "#logout" ).click(function( event ) {
+// event.preventDefault();
+    
+//  $.ajax({
+//     type: 'GET',
+//     url: "http://localhost:1337/logout",
+ 
+//     xhrFields: {
+//        withCredentials: true
+//     },
+
+//     success: function (data) {
+//      console.log("data",data)
+          
+  
+//     },
+
+//     error: function (req, status, error) {
+//    console.log("error",error);
+//     }
+// });
+
+//     });
 </script>

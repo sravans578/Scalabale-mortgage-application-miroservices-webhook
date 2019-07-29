@@ -40,7 +40,7 @@
         </nav>
               
 <div class="login-form">
-    <form action="http://localhost:1337/loginemployee" method="post" id="login">
+    <form action="http://localhost:1337/login" method="post" id="login">
         <h4 class="text-center">Employee Login</h4>       
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Username" required="required" name="uname">
@@ -67,15 +67,18 @@
         pass = $form.find( "input[name='pass']" ).val(),
         url = $form.attr( "action" );
      
-      // POST request
-      var posting = $.post( url, {username: user_name, password : pass} );
-     
-      // Response
-      posting.done(function(data) {
-        console.log(data.status);
-        // console.log("reached here");
-        // location.href = "/adddetails";
-        if(data.login == "success"){
+ $.ajax({
+    type: 'POST',
+    url: url,
+    data: {"employeeID": user_name, "password" : pass},
+    dataType: "json",
+    xhrFields: {
+       withCredentials: true
+    },
+
+    success: function (data) {
+     console.log("data",data,data.cookies)
+           if(data.message == "Successfully logged in"){
             // Store employee 
             //cpnsole
             sessionStorage.setItem('Emp_ID', user_name); 
@@ -86,7 +89,14 @@
         else{
             alert("Login failed, please try again");
         }
-      });
+  
+    },
+
+    error: function (req, status, error) {
+   console.log("error",error);
+    }
+});
+
     });
     </script>
      

@@ -32,7 +32,7 @@ module.exports.security = {
   cors: {
     allRoutes: true,
     allowOrigins: 'http://localhost:1338',
-    allowCredentials: false,
+    allowCredentials: true,
   },
 
   /****************************************************************************
@@ -49,6 +49,6 @@ module.exports.security = {
   *                                                                           *
   ****************************************************************************/
 
-  // csrf: false
+   //csrf: true
 
 };

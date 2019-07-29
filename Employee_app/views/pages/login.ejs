@@ -27,7 +27,7 @@
                 pwd.focus();
                 return false;
             }
-            let url = "http://localhost:8080";
+            let url = "http://localhost:1337/login";
             let xhttp = new XMLHttpRequest();
             xhttp.open("POST", url, true);
             xhttp.send(JSON.stringify({username:"uname",password:"pwd"}));

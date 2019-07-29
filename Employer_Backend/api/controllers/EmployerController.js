@@ -9,6 +9,7 @@ var request = require('request');
 module.exports = {
 
 login : async function(req,res){
+  console.log(req.session);
   console.log("entered****");
   var uname = req.body.username;
   var pwd = req.body.password;

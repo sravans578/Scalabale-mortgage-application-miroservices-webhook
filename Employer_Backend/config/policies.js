@@ -18,5 +18,8 @@ module.exports.policies = {
   ***************************************************************************/
 
   // '*': true,
-
+ '*': "authenticated",
+ AuthController: {
+    '*': true,
+  }
 };

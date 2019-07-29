@@ -36,6 +36,8 @@ module.exports.routes = {
 'post /loginmbr019' : 'MBRController.loginmbr019',
 'post /personalinfo019' : 'MBRController.personalinfo019',
 'post /loginemployee' : 'EmployerController.login',
-'post /getEmployerDetails' : 'EmployerController.recieveFromEmployer'
+'post /getEmployerDetails' : 'EmployerController.recieveFromEmployer',
+'POST /login': 'AuthController.login',
+'/logout': 'AuthController.logout',
 
 };
