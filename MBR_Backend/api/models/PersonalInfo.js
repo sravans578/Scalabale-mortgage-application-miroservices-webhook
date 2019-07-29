@@ -35,6 +35,10 @@ module.exports = {
     employeer_status:{
         type:'string',
         defaultsTo: "Pending"
+    },
+    insurance_value:{
+        type:'string',
+        defaultsTo: "Pending"
     }
 }
 };
