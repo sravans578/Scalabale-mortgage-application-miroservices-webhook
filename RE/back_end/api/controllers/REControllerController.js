@@ -21,29 +21,31 @@ module.exports = {
       res.send("No username");
     }
     if (uname == "" && pwd == "") {
-      res.send("No username or password specified!");
+      return res.ok({
+        error: 'No username or password specified!'
+      }, 400);
     } else {
       Users.find({
         "userID": uname,
         "password": pwd,
         "type": req.body.type
       }).exec(function(err, result) {
-        console.log("result", result);
         if (err) {
           sails.log.debug('Some error occurred ' + err);
-          return res.json(300, {
+          return res.ok({
             error: 'Some error occurred'
-          });
+          }, 300);
+
         } else {
           if (result != "") {
             sails.log.debug('Success', JSON.stringify(result));
-            return res.json({
+            return res.ok({
               success: 'Login Successful'
             });
           } else {
-            return res.json({
+            return res.ok({
               error: ' Please check the username and password'
-            });
+            }, 400);
           }
         }
       });
@@ -74,14 +76,16 @@ module.exports = {
       }).exec(function(err, result) {
         console.log(result);
         if (result.length <= 0) {
+          return res.ok({
+            error: 'Some error occured'
+          }, 500);
           res.json({
             result: false
           });
         }
-        res.json({
+        return res.ok({
           result: 'Application submitted succesfully'
         });
-
       });
     });
   },
@@ -107,23 +111,43 @@ module.exports = {
       var ins_url = "https://prod-28.canadacentral.logic.azure.com:443/workflows/a31048ca9ec743e79b43d5a8ee8930bb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=KJxYnu05yHpR7jehOdYT9RjT-eHaOVvZVwwtDVPUICk";
       request.post(ins_url, {
         json: data
-      }, function(err, response, body) {
-        if (err) {
-          console.log("error", err);
-          return res.status(500).send({
+      }, async function(err, response, body) {
+        var _startTime = new Date();
+        await Logger.create({
+          IP: -1,
+          requestUrl: response.request.href,
+          requestBody: JSON.stringify(response.request.body),
+          method: response.req.method,
+          requestHeaders: JSON.stringify(response.request.headers),
+          responseTime: new Date() - _startTime + ' ms',
+          responseCode: response.statusCode,
+          responseBody: JSON.stringify({
+            body
+          }),
+          appSource: 'RE Portal'
+        }).exec(function(err, result) {
+          if (err) {
+            console.log('Some error occured ' + err);
+          }
+        });
+
+        if (response.statusCode != 200 || response.statusCode != 201) {
+
+          return res.ok({
             result: "Internal error while invoking internal call"
-          });
+          }, 500);
         }
-        res.json({
+
+        res.ok({
           result: 'Application updated succesfully'
         });
       })
 
     } else {
       console.log("error", err);
-      return res.status(404).send({
+      return res.ok({
         result: "Bad Client"
-      });
+      }, 400);
     }
 
   }

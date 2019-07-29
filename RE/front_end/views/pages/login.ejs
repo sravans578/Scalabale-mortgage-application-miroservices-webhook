@@ -89,7 +89,13 @@
             alert(data.error);
         }
       });
+			posting.error(function(data) {
+				alert(data.responseJSON.error);
+			})
     });
+
+
+
     </script>
 
 </html>
