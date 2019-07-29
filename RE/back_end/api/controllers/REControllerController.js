@@ -131,13 +131,6 @@ module.exports = {
           }
         });
 
-        if (response.statusCode != 200 || response.statusCode != 201) {
-
-          return res.ok({
-            result: "Internal error while invoking internal call"
-          }, 500);
-        }
-
         res.ok({
           result: 'Application updated succesfully'
         });
