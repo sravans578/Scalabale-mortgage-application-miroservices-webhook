@@ -31,7 +31,15 @@ module.exports = {
       type: 'string',
       required: true
     },
+    responseBody: {
+      type: 'string',
+      required: true
+    },
     responseTime: {
+      type: 'string',
+      required: true
+    },
+    appSource: {
       type: 'string',
       required: true
     }
