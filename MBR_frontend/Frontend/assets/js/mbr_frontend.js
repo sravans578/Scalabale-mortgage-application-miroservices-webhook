@@ -1,7 +1,6 @@
 function login(){        
     let uname = document.getElementById("mortID").value;
     let pwd = document.getElementById("password").value;
-    console.log(pwd);
     //validations for inputs
     if (uname == null || uname === "") {
         alert("Please enter the Mortgage ID");
@@ -18,9 +17,12 @@ function login(){
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let result = JSON.parse(this.response);
-            console.log(result);
-            if(result.error == "Some error occurred"){  
+            
+            if(result.mortgageStatus == "Id and Password Doesnt Match"){  
                 alert("Login Failed");
+            }
+            if(result.mortgageStatus == "ID not found"){
+                alert("User ID does not exist");
             }
             else if(result.success == "Login Successful"){
                 sessionStorage.setItem('mortgageID',result.id)

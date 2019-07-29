@@ -11,9 +11,14 @@
         .card-header{background: beige}
         .submit{margin-left: 45%; background: chocolate}
         .card{width: 50rem; height: 25%; margin-left: 20%; margin-top: 10px; padding-bottom: 20px; background:lavender}
-        #statusmsg{ text-align: center}
         #statusmsg1{text-align: center}
         #statusmsg2{text-align: center}
+        #statusmsg3{ text-align: center}
+        #statusmsg4{ text-align: center}
+        #statusmsg5{ text-align: center}
+
+
+
 
         .tablink {
             background-color: #555;
@@ -50,9 +55,9 @@ window.onload=  function() {
                     else{
                         document.getElementById("statusmsg1").innerHTML = "Name: " + result.name;
                         document.getElementById("statusmsg2").innerHTML = "MLS ID: " + result.mlsid; 
-                        document.getElementById("statusmsg3").innerHTML = "Insurance value:" + result.insurance_value;
-                        document.getElementById("statusmsg4").innerHTML = "Dedcutible value: " + result.deduct_value; 
-                        document.getElementById("statusmsg5").innerHTML = "Status from employer :" + result.employeer_status;
+                        document.getElementById("statusmsg3").innerHTML = "Insurance value: " + result.insurance_value;
+                        document.getElementById("statusmsg4").innerHTML = "Deductible value: " + result.deduct_value; 
+                        document.getElementById("statusmsg5").innerHTML = "Status from employer: " + result.employeer_status;
                         
                     }
                     console.log(result);
@@ -62,7 +67,7 @@ window.onload=  function() {
             xhttp.send();
         }
 </script>
-<button class="tablink" style="width: 100%; font-size:30px; font-weight: bold"id="defaultTab">Status of your mortgage</button>
+<button class="tablink" style="width: 100%; font-size:30px; font-weight: bold"id="defaultTab">Status of mortgage</button>
 <div id="Status" class="tabcontent">
     <div class="container" style="margin-left: 18%;
     padding-top: 70px;">
@@ -72,17 +77,17 @@ window.onload=  function() {
             <h1 class="card-header">
                 Personal Information </h1>
             <div>
-                <p id="statusmsg1">To be Updated</p>
-                <p id="statusmsg2">To be Updated</p>
+                <p id="statusmsg1" style="font-weight: bold">To be Updated</p>
+                <p id="statusmsg2" style="font-weight: bold">To be Updated</p>
 
             </div>
         </div>
         <div class="card" >
             <h1 class="card-header">
-              Insurance values</h1>
+              Insurance Status</h1>
             <div>
-                <p id="statusmsg3">To be Updated</p>
-                <p id="statusmsg4">To be Updated</p>
+                <p id="statusmsg3" style="font-weight: bold">To be Updated</p>
+                <p id="statusmsg4" style="font-weight: bold">To be Updated</p>
 
             </div>
         </div>
@@ -90,7 +95,7 @@ window.onload=  function() {
             <h1 class="card-header">
                Employer status </h1>
             <div>
-                <p id="statusmsg5">To be Updated</p>
+                <p id="statusmsg5" style="font-weight: bold">To be Updated</p>
             </div>
         </div>
     </div>
