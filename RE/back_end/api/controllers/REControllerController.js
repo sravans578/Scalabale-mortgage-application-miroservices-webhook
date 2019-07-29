@@ -129,11 +129,11 @@ module.exports = {
           if (err) {
             console.log('Some error occured ' + err);
           }
+          res.ok({
+            result: 'Application updated succesfully'
+          });
         });
 
-        res.ok({
-          result: 'Application updated succesfully'
-        });
       })
 
     } else {
