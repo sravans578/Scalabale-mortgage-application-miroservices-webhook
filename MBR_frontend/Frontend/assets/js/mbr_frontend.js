@@ -1,6 +1,7 @@
 function login(){        
     let uname = document.getElementById("mortID").value;
     let pwd = document.getElementById("password").value;
+    console.log(pwd);
     //validations for inputs
     if (uname == null || uname === "") {
         alert("Please enter the Mortgage ID");
@@ -12,7 +13,7 @@ function login(){
         // pwd.focus();
         return false;
     }
-    let url = "http://localhost:4000/loginmbr019?mort_id=" + uname +"&pwd=" + pwd;
+    let url = "http://localhost:4000/loginmbr019?id=" + uname +"&password=" + pwd;
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
@@ -22,13 +23,13 @@ function login(){
                 alert("Login Failed");
             }
             else if(result.success == "Login Successful"){
+                sessionStorage.setItem('mortgageID',result.id)
                 location.href = "/mbrstatus";
             }
         }
     };
-    xhttp.open("GET", url, true);
+    xhttp.open("POST", url, true);
     xhttp.send();
-     
 }
 
 function ValidationsNum(txt, event) {

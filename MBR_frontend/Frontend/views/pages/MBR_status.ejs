@@ -6,11 +6,39 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- 
     <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<style>
+    h1{text-align: center}
+        .card-header{background: beige}
+        .submit{margin-left: 45%; background: chocolate}
+        .card{width: 50rem; height: 25%; margin-left: 20%; margin-top: 10px; padding-bottom: 20px; background:lavender}
+        #statusmsg{ text-align: center}
+        #statusmsg1{text-align: center}
+        #statusmsg2{text-align: center}
 
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 25%;
+        }
+
+        .tablink:hover {
+            background-color: #777;
+        }
+</style>
 <script>
-function getStatus() {
+window.onload=  function() {
+    console.log("Hello");
+    let uname = sessionStorage.getItem('mortgageID'); 
+    console.log(uname);
+    // let pwd = document.getElementById("password").value;
             
-            let url = "https://mbrback.azurewebsites.net/getstatus?appid=" + appid;
+            let url = "http://localhost:4000/getstatus?id=" + uname;
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
@@ -20,7 +48,10 @@ function getStatus() {
                         alert("ID not Found");
                     }
                     else{
-                        document.getElementById("statusmsg").innerHTML = "Your Application status is: " + result.mortgageStatus;
+                        document.getElementById("statusmsg").innerHTML = "Your Insurance value is: " + result.insurance_value;
+                        document.getElementById("statusmsg1").innerHTML = "Your RE status is: " + result.RE_status; 
+                        document.getElementById("statusmsg2").innerHTML = "Employer Status: " + result.employeer_status;
+                        
                     }
                     console.log(result);
                 }
@@ -29,16 +60,31 @@ function getStatus() {
             xhttp.send();
         }
 </script>
+<button class="tablink" style="width: 100%; font-size:30px; font-weight: bold"id="defaultTab">Application Status</button>
 <div id="Status" class="tabcontent">
-    <div class="container">
-        <input type="text" class="form-control" id="appid" placeholder="Enter your Appid">
-        <input type="button" class="submit" onclick="getStatus()" style = "margin-top: 3.5%" value="Submit">
-
+    <div class="container" style="margin-left: 18%;
+    padding-top: 70px;">
+     
+        
             <div class="card" >
             <h1 class="card-header">
                 Status of your mortgage </h1>
             <div>
                 <p id="statusmsg">To be Updated</p>
+            </div>
+        </div>
+        <div class="card" >
+            <h1 class="card-header">
+                Your RE Status </h1>
+            <div>
+                <p id="statusmsg1">To be Updated</p>
+            </div>
+        </div>
+        <div class="card" >
+            <h1 class="card-header">
+               Employeer status </h1>
+            <div>
+                <p id="statusmsg2">To be Updated</p>
             </div>
         </div>
     </div>
