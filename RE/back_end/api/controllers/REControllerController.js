@@ -104,7 +104,7 @@ module.exports = {
         "appraisal_value": requestUpdated.value
       };
       console.log(data);
-      var ins_url = "http://localhost:1338/fetchInsurance";
+      var ins_url = "https://prod-28.canadacentral.logic.azure.com:443/workflows/a31048ca9ec743e79b43d5a8ee8930bb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=KJxYnu05yHpR7jehOdYT9RjT-eHaOVvZVwwtDVPUICk";
       request.post(ins_url, {
         json: data
       }, function(err, response, body) {
