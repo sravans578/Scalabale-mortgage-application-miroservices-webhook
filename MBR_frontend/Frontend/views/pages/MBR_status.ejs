@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+<script>
+function getStatus() {
+            
+            let url = "https://mbrback.azurewebsites.net/getstatus?appid=" + appid;
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log("got response");
+                    let result = JSON.parse(this.response);
+                    if(result.mortgageStatus == "ID not found"){
+                        alert("ID not Found");
+                    }
+                    else{
+                        document.getElementById("statusmsg").innerHTML = "Your Application status is: " + result.mortgageStatus;
+                    }
+                    console.log(result);
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+</script>
+<div id="Status" class="tabcontent">
+    <div class="container">
+        <input type="text" class="form-control" id="appid" placeholder="Enter your Appid">
+        <input type="button" class="submit" onclick="getStatus()" style = "margin-top: 3.5%" value="Submit">
+
+            <div class="card" >
+            <h1 class="card-header">
+                Status of your mortgage </h1>
+            <div>
+                <p id="statusmsg">To be Updated</p>
+            </div>
+        </div>
+    </div>
+</div>
