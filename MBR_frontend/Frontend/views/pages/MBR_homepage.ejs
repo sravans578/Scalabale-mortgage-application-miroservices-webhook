@@ -46,12 +46,34 @@
 
     </style>
     <script>
- function openmodal(){
-        $('#myForm').on('submit', function(e){
-  $('#myModal').modal('show');
-  e.preventDefault();
-});
-    }
+//         $('#submitBtn').on('submit', function() {
+//     $('#myModal').show();
+// });
+//         function check(){
+//             var inputs = document.getElementsByTagName("input");
+//             var filled =true;
+
+//             for(i=0;i<inputs.length;i++){
+//                 if(inputs[i].type=="text" && !input[i].value){
+//                     filled=false;
+//                 }
+//         }
+//         if(filled){
+//             document.getElementById("submitBtn").disabled= false;
+//                 }
+//                 else{
+//                     document.getElementById("submitBtn").disabled= true;
+
+//                 }
+//                 window.addEventListener("keyup",check);
+//                         }
+
+//  function openmodal(){
+//         $('#myForm').on('submit', function(e){
+//   $('#myModal').modal('show');
+//   e.preventDefault();
+// });
+    //}
   </script>
     </head>
 <body>
@@ -66,33 +88,31 @@
                 <form action="" id="myForm" method="post">
                     <div class="form-group">
                         <label for="name"><h4>Applicant Name</h4></label>
-                        <input type="text" maxlength="10" class="form-control" onkeypress="return ValidationsName(this,event)"id="name" placeholder="Enter your name">
+                        <input type="text" maxlength="10" class="form-control" required="true" onkeypress="return ValidationsName(this,event)"id="name" placeholder="Enter your name">
                     </div>
                     <div class="form-group">
                         <label for="mortValue"><h4>Mortgage Value</h4></label>
-                        <input type="text" class="form-control" onkeypress="return ValidationsNum(this,event)"id="mvalue" placeholder="Enter a mortgage value">
+                        <input type="text" class="form-control" required="true" onkeypress="return ValidationsNum(this,event)"id="mvalue" placeholder="Enter a mortgage value">
                     </div>
                     <div class="form-group">
                         <label for="mlsID"><h4>MLS ID</h4></label>
-                        <input type="text" class="form-control"  onkeypress="return ValidationsNum(this,event)" id="mlsid" placeholder="Enter your property ID">
+                        <input type="text" class="form-control" required  onkeypress="return ValidationsNum(this,event)" id="mlsid" placeholder="Enter your property ID">
                     </div>
                     <div class="form-group">
                         <label for="employerName"><h4>Employer name</h4></label>
-                        <input type="text" class="form-control" id="empName" onkeypress="return ValidationsName(this,event)" placeholder="Enter your employer name">
+                        <input type="text" class="form-control" required id="empName" onkeypress="return ValidationsName(this,event)" placeholder="Enter your employer name">
                     </div>
                     <div class="form-group">
                         <label for="password"><h4>Password</h4></label>
-                        <input type="password" class="form-control" minlength="8" maxlength="10" id="password" onkeyup="passcheck()" placeholder="Choose a Password">
+                        <input type="password" class="form-control"required  minlength="8" maxlength="10" id="password" onkeyup="passcheck()" placeholder="Choose a Password">
                     </div>
                     <div class="form-group">
                         <label for="confirm_password"><h4>Confirm Password</h4></label>
-                        <input type="password" class="form-control"minlength="8" maxlength="10" onkeyup="passcheck()" id="confirm_password"placeholder="Re-enter your Password">
+                        <input type="password" class="form-control"minlength="8" maxlength="10" required="true" onkeyup="passcheck()" id="confirm_password"placeholder="Re-enter your Password">
                         <span id='message'></span>
                     </div>
-                    <input type="button" class="submit" onclick="mbrform()" data-toggle="modal" data-target="#myModal" style = "margin-top: 3.5%" value="Submit">
-                    <!-- <button id="submit" on="openmodal()"  data-target="#myModal" style = "margin-top: 3.5%" value="Submit"> -->
-
-                </form>
+                    <button  id="submitBtn" class="submit" onclick="mbrform()"  data-toggle="modal" data-target="#myModal" style = "margin-top: 3.5%">Submit</button>
+                    </form>
                 <p>Already applied? <a href="/mbrlogin">Click here to know the status</a></p>
             </div>
         </div>
@@ -120,12 +140,6 @@
     </div>
 </div>
 
-
-
-<!-- <script>
-    // setting default tab
-    document.getElementById("defaultTab").click();
-</script> -->
 
 </body>
 </html>

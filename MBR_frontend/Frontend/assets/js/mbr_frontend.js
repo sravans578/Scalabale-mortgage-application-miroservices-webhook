@@ -60,6 +60,8 @@ function mbrform() {
     var mlsid = document.getElementById("mlsid").value;
     var empName = document.getElementById("empName").value;
     var pwd = document.getElementById("password").value;
+
+    var submitBtn = document.getElementById("submitBtn")
     //validations for inputs
     if (name == null || name === "") {
         alert("Please enter the name");
@@ -83,22 +85,23 @@ function mbrform() {
             alert("Please enter a valid password");
             return false;
     }
-
-    let url = "http://localhost:4000/personalinfo019?name=" + name + "&mortgage_value=" + mvalue + "&MISID=" + mlsid + "&Employer_name=" +empName +"&Password=" +pwd;
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log("got response");
-            let result = JSON.parse(this.response);
-            document.getElementById("applicationNum").innerHTML = "Your Application id is: " + result.appid;
-            document.getElementById("brokerAddress").innerHTML = "Broker's webservice is: " + result.webservice;
-            console.log(result);
+   
+            let url = "http://localhost:4000/personalinfo019?name=" + name + "&mortgage_value=" + mvalue + "&MISID=" + mlsid + "&Employer_name=" +empName +"&Password=" +pwd;
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log("got response");
+                    let result = JSON.parse(this.response);
+                    document.getElementById("applicationNum").innerHTML = "Your Application id is: " + result.appid;
+                    document.getElementById("brokerAddress").innerHTML = "Broker's webservice is: " + result.webservice;
+                    console.log(result);
+                }
+            };
+            xhttp.open("POST", url, true);
+            xhttp.send();
         }
-    };
-    xhttp.open("POST", url, true);
-    xhttp.send();
-    console.log( "anurag121312",result.appid);
-}
+    
+
 var passcheck = function() {
     if (document.getElementById('password').value ==
       document.getElementById('confirm_password').value) {
